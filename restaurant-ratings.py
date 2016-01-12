@@ -22,14 +22,39 @@ def update_restaurant_and_ratings():
     user_restaurant_name = raw_input("Enter restaurant name: ")
     user_restaurant_rating = raw_input("Enter restaurant rating: ")
 
+    while True:
+        try:
+            int_user_restaurant_rating = int(user_restaurant_rating)
+            break
+
+        except ValueError:
+            print "Please enter a number."
+            return update_restaurant_and_ratings()
+
     restaurant_and_rating = restaurant_ratings("scores.txt")
 
-    restaurant_and_rating[user_restaurant_name] = int(user_restaurant_rating)
+    restaurant_and_rating[user_restaurant_name] = int_user_restaurant_rating
 
     sorted_restaurants_alphabetically = sorted(restaurant_and_rating)
 
     for restaurant in sorted_restaurants_alphabetically:
-        print "%s %s" % (restaurant, restaurant_and_rating[restaurant])
+        print "%s %s" % (restaurant, restaurant_and_rating[restaurant])  
+        
+
+
+    # if type(user_restaurant_rating) != type(10):
+    #     print "Enter a number"
+    #     return update_restaurant_and_ratings()
+    
+    # else:
+    #     restaurant_and_rating = restaurant_ratings("scores.txt")
+
+    #     restaurant_and_rating[user_restaurant_name] = int(user_restaurant_rating)
+
+    #     sorted_restaurants_alphabetically = sorted(restaurant_and_rating)
+
+    #     for restaurant in sorted_restaurants_alphabetically:
+    #         print "%s %s" % (restaurant, restaurant_and_rating[restaurant])
 
 
 update_restaurant_and_ratings()
